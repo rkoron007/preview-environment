@@ -5,7 +5,7 @@ services:
 - type: web
   plan: free
   previews:
-    plan: free
+    plan: pro
   name: express-backend
   runtime: node
   buildCommand: cd backend && yarn
@@ -36,4 +36,4 @@ databases:
   databaseName: test_db
   user: test_user
   plan: free
-  previewPlan: free
+  previewPlan: pro
