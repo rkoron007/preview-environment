@@ -36,3 +36,4 @@ databases:
   databaseName: test_db
   user: test_user
   plan: free
+  previewPlan: basic-256mb
