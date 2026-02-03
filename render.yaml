@@ -36,4 +36,3 @@ databases:
   databaseName: test_db
   user: test_user
   plan: free
-  previewPlan: pro
