@@ -1,39 +1,41 @@
 previews:
   generation: automatic
   expireAfterDays: 3
+
 services:
-- type: web
-  plan: free
-  previews:
-    plan: pro
-  name: express-backend
-  runtime: node
-  buildCommand: cd backend && yarn
-  startCommand: cd backend && yarn start
-  envVars:
-  - key: MY_API_KEY
-    value: production-api-key
-    previewValue: test-api-key
-  - key: DB_CONNECTION_STRING
-    fromDatabase:
-      name: postgres_db
-      property: connectionString
-- type: web
-  name: render-todo
-  runtime: static
-  buildCommand: cd frontend && yarn install && yarn build
-  staticPublishPath: ./frontend/build
-  envVars:
-  - key: NODE_VERSION
-    value: 16
-  - key: REACT_APP_API_HOST
-    fromService:
-      type: web
-      name: express-backend
-      property: host
+  - type: web
+    plan: free
+    previews:
+      plan: pro
+    name: express-backend
+    runtime: node
+    buildCommand: cd backend && yarn
+    startCommand: cd backend && yarn start
+    envVars:
+      - key: MY_API_KEY
+        value: production-api-key
+        previewValue: test-api-key
+      - key: DB_CONNECTION_STRING
+        fromDatabase:
+          name: postgres_db
+          property: connectionString
+  - type: web
+    name: render-todo
+    runtime: static
+    buildCommand: cd frontend && yarn install && yarn build
+    staticPublishPath: ./frontend/build
+    envVars:
+      - key: NODE_VERSION
+        value: 16
+      - key: REACT_APP_API_HOST
+        fromService:
+          type: web
+          name: express-backend
+          property: host
+
 databases:
-- name: postgres_db
-  databaseName: test_db
-  user: test_user
-  plan: free
-  previewPlan: basic-256mb
+  - name: postgres_db
+    databaseName: test_db
+    user: test_user
+    plan: free
+    previewPlan: basic-256mb
